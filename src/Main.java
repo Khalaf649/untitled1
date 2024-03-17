@@ -1,13 +1,21 @@
 import java.util.Scanner;
 public class Main {
+
     public static void main(String[] args) {
             Scanner myObj = new Scanner(System.in);  // Create a Scanner object
             System.out.println("Choose the number of parameters to pass to SUM:");
             System.out.println("1\n2");
+            int choice=0;
         while (true) {
-
-            int choice = myObj.nextInt();
-            int sumRes = 0;
+            try {
+                 choice = myObj.nextInt();
+            }
+            catch (Exception e) {
+                // Catch any exception that occurs
+                System.out.println("choice must be equal 1 or 2");
+                break;
+            }
+                int sumRes = 0;
             switch (choice) {
                 case 1:
                     System.out.println("Choose the data type of parameter to pass to SUM:");
@@ -17,6 +25,7 @@ public class Main {
                         System.out.println("Please enter an integer");
                         int input = myObj.nextInt();
                         sumRes = sum(1, input);
+                        System.out.println(sumRes);
 
                     } else {
                         System.out.println("Please enter a float");
@@ -33,15 +42,29 @@ public class Main {
                         max = min;
                         min = temp;
                     }
-                    // sumRes = sum(min, max);//what if max<min??
+                     sumRes = sum(min, max);
+                    System.out.println(sumRes);
                     break;
                 default:
-                    System.out.println("Invalid choice\nPlease choose 1 or 2");//and???r we done?}
+                    System.out.println("Invalid choice\nPlease choose 1 or 2");
                     continue;
             }
-            break;
+            System.out.println("Do want another try?");
+            System.out.println("1 for yes or 0 for no");
+            int z=myObj.nextInt();
+            if(z==1)
+            {
+                System.out.println("Choose the number of parameters to pass to SUM:");
+                System.out.println("1\n2");
+                continue;
+            }
+            else {
+                break;
+            }
+
 
         }
+        myObj.close();
     }
     public static int sum(int min,int max)
     {
